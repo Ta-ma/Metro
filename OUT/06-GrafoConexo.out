@@ -1,0 +1,5 @@
+0
+Arista [nodoOrigen=1, nodoDestino=2, costo=0]
+Arista [nodoOrigen=2, nodoDestino=3, costo=0]
+Arista [nodoOrigen=3, nodoDestino=4, costo=0]
+Arista [nodoOrigen=4, nodoDestino=5, costo=0]

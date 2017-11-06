@@ -28,14 +28,21 @@ public class Grafo {
 		
 		for (int i = cantTuneles; i < cantPuentes + cantTuneles; i++)
 			aristas[i] = new Arista(sc.nextInt() - 1, sc.nextInt() - 1, 1);
+		
+		sc.close();
 	}
 	
 	public void Resolver (File arch) throws IOException
 	{
+		System.out.println(arch.getName());
+		long tInicial = System.currentTimeMillis();
 		Set<Integer> v = new HashSet<Integer>();
 		List<Arista> lista = new LinkedList<Arista>();
 		
 		int costoFinal = 0;
+		
+		// agrego el nodo origen de la primera arista para indicar que ya está visitado
+		v.add(aristas[0].getNodoOrigen());
 		
 		// la lista ya viene ordenada
 		for (int i = 0; i < aristas.length; i++)
@@ -43,13 +50,16 @@ public class Grafo {
 			int nodoO = aristas[i].getNodoOrigen();
 			int nodoD = aristas[i].getNodoDestino();
 			
-			if(!v.contains(nodoD))
+			if(!v.contains(nodoD) || !v.contains(nodoO))
 			{
 				v.add(nodoD);
 				costoFinal += aristas[i].getCosto();
 				lista.add(aristas[i]);
 			}
 		}
+		
+		long tFinal = System.currentTimeMillis();
+		System.out.println(tFinal - tInicial);
 		
 		// out
 		PrintWriter out = new PrintWriter(new FileWriter(arch));
